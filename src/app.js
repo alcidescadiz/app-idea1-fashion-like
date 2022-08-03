@@ -5,7 +5,6 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 import express from 'express'
-import serverless from 'serverless-http'
 import cors from  'cors'
 import dotenv from 'dotenv'
 dotenv.config()
