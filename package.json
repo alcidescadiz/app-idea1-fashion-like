@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "type": "module",
-  "main": "src/app.js",
+  "main": "src/server.js",
   "scripts": {
-    "start": "NODE_ENV=development ./node_modules/.bin/netlify-lambda serve src",
-    "build": "NODE_ENV=production ./node_modules/.bin/netlify-lambda build src"
+    "dev": "nodemon src/server",
+    "start": "node src/server"
   },
   "keywords": [],
   "author": "",
@@ -15,8 +15,6 @@
     "cors": "2.8.5",
     "dotenv": "16.0.1",
     "ejs": "3.1.8",
-    "express": "4.18.1",
-    "netlify-lambda": "2.0.15",
-    "serverless-http": "3.0.1"
+    "express": "4.18.1"
   }
 }

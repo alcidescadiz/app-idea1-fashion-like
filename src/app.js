@@ -23,5 +23,4 @@ app.get('/', (req, res)=>{
     res.render('index', {title: 'Home page'})
 })
 
-module.exports = app;
-module.exports.handler = serverless(app);
+export default app
