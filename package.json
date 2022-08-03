@@ -4,12 +4,16 @@
   "description": "",
   "type": "module",
   "main": "src/server.js",
+  "engines": {
+    "node": "16.13.0",
+    "npm": "8.1.0"
+  },
   "scripts": {
     "dev": "nodemon src/server",
     "start": "node src/server"
   },
   "keywords": [],
-  "author": "",
+  "author": "Ing Alcides Cádiz",
   "license": "ISC",
   "dependencies": {
     "cors": "2.8.5",
