@@ -6,7 +6,7 @@
   "main": "src/server.js",
   "engines": {
     "node": "16.13.0",
-    "npm": "8.1.0"
+    "npm": "8.10.0"
   },
   "scripts": {
     "dev": "nodemon src/server",
