@@ -1,4 +1,4 @@
-import Router from "../modules/Router.clouser.JS";
+import Router from "../modules/Router.clouser.js";
 import {} from '../components/index.js'
 let [Loading, Route, Render, RenderEvent, PageNotFound, Login] = Router();
 
