@@ -3,6 +3,7 @@ export function Menu (){
     let templete= `
      <div class='container'>
         <a href='#'> Gallery </a>
+        <a href='#admin'> Admin </a>
         <a href='#login'> Login </a>
         <a href='#register'> Register </a>
      </div>
