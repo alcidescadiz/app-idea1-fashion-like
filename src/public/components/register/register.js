@@ -45,7 +45,7 @@ export function Register() {
                 for (let index = 0; index < 4; index++) {
                     data[formData[index].name] = formData[index].value;
                 }
-                fetch('http://localhost:3001/v1-api-register',
+                fetch(window.location.origin+'/v1-api-register',
                     {
                         body: JSON.stringify(data),
                         method:'POST',

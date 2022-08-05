@@ -33,7 +33,7 @@ export function Login([fn]) {
                 for (let index = 0; index < 2; index++) {
                     data[formData[index].name] = formData[index].value;
                 }
-                fetch('http://localhost:3001/v1-api-login',
+                fetch(window.location.origin+'/v1-api-login',
                     {
                         body: JSON.stringify(data),
                         method:'POST',

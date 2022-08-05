@@ -37,6 +37,7 @@ export function Menu ([fn]){
     setTimeout(()=>{
         document.getElementById('btnLogout').addEventListener('click', ()=>{
             fn({status: false, token:'' })
+            window.location.hash= '#' 
         })
     },10)
     div.innerHTML = templete
