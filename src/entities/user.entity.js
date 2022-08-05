@@ -18,6 +18,10 @@ export let UsersEntity = {
         type:'password',
         requiered: true,
         min: 6
+    },
+    favorities:{
+        type: 'array'
     }
+
 
 }

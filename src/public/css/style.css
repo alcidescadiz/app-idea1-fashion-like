@@ -1,0 +1,16 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+  #root {
+    position: relative;
+    min-height: 100%;
+  }
+  footer {
+    height: 100px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }

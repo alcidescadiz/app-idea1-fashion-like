@@ -37,8 +37,8 @@ export function Gallery() {
 
     })
         let templete= `
-            <div class='container'>
-                <div class="g-2">
+            <div class='container pb-5'>
+                <div class="g-2 pb-4">
                     ${post}
                 </div> 
             </div>
