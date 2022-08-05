@@ -10,6 +10,10 @@ export async function getOneDb(email, database) {
     const element = getConnection().data[database].find(e=> e.email === email)
     return element
 }
+export async function getAllDb( database) {
+    const elements = getConnection().data[database]
+    return elements
+}
 
 export function isEmailUnique(email, database) {
     const element = getConnection().data[database].filter(e=> e.email === email)

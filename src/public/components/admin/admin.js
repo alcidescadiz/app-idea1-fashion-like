@@ -20,9 +20,10 @@ export { componentTable as Admin};
 //  --> {campos} y tipo de campos: 'text' 'number' 'password' 'color' 'date' 'email', 'select'[]
 // activar modal de ingreso y actualizar
 getModal('formulario', 'Form Modal',{ 
-  id: "number", 
+  id: "text", 
   post: "text",
-  title: "text",
+  date:"text",
+  img: "text",
   voto:["select", ['like', 'dislike']] // select
 });
 /**
@@ -30,8 +31,18 @@ getModal('formulario', 'Form Modal',{
  * Estado inicial dela base de datos-- USAR ESTA PARA EL FECTH
  */
 
-
- inicialArrayObjects([])
+ fetch(window.location.origin+'/v1-api-post',
+ {
+     method:'GET',
+     headers:{
+         'Content-Type': 'application/json',
+         "x-access-token": "yfkuyfu"
+     }
+ }
+ ).then(res => res.json())
+  .then(json => {
+    inicialArrayObjects(json.posts)
+  })
 
 /**
  * Acciones crud:
@@ -52,8 +63,26 @@ document.addEventListener("submit", (e) => {
          */
         if(confirm('Desea agregar datos?')){
           eventForm();
-          setObjectInArray({ value: getData(), mode: "add" });
-          RenderTable();
+          fetch(window.location.origin+'/v1-api-post',
+          {
+              body: JSON.stringify(getData()),
+              method:'POST',
+              headers:{
+                  'Content-Type': 'application/json',
+                  "x-access-token": "yfkuyfu"
+              }
+          }
+      ).then(res => {
+        console.log(res)
+          if(res.statusText === 'OK'){
+              document.getElementById('submitRegister')?.reset()
+              //window.location.hash= '#'
+              console.log('agregado con exito el feth')
+              setObjectInArray({ value: getData(), mode: "add" });
+              RenderTable();
+          }
+      })
+
         }
       }
       //--- editar - edit---

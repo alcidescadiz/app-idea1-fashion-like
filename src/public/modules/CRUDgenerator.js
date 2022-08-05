@@ -14,8 +14,8 @@ export let useGenerateTableCRUD = function () {
           save.push({ id: value.id, ...value });
         } else {
           value.id =
-            typeof Number(value.id) === "number"
-              ? Number(value.id)
+            typeof (value.id) === "number"
+              ? value.id
               : save.length + 1;
           save.push({ id: value.id, ...value });
         }
@@ -28,7 +28,7 @@ export let useGenerateTableCRUD = function () {
         save = save.map((e) => {
           if (e.id === id) {
             return {
-              id: Number(e.id),
+              id: e.id,
               ...value,
             };
           }
@@ -165,35 +165,35 @@ export let useGenerateTableCRUD = function () {
       div.appendChild(divModal);
       RenderTable();
       function CleanForm(){
-        divModal.innerHTML = ``
-        modal = ``
-        document.getElementById(idForm).reset();
+        //divModal.innerHTML = ``
+        //modal = ``
+        document.getElementById(idForm)?.reset();
       }
       //--- eventos---
       document.addEventListener("click", (e) => {
-        if (e.target.innerHTML === "Create") {
-          CleanForm()
-          RenderTable();
-          document.getElementById("action-form-edit").style.display = 'none';
-          document.getElementById("action-form-add").style.display = "block";
-        }
-        if (e.target.innerHTML === "Close") {
-          CleanForm()
-          document.getElementById("action-form-add").style.display = "none";
-          document.getElementById("action-form-edit").style.display = 'none';
-        }
-        if (e.target.innerHTML === "View") {
-          CleanForm()
-          RenderTable();
-          document.getElementById("action-form-edit").style.display = 'block';
-          document.getElementById("action-form-add").style.display = "none";
-          let id = Number(e.target.parentNode.parentNode.childNodes[0].innerHTML);
-          let data = save.filter((e) => e.id === id);
-          Object.entries(data[0]).map((e) => {
-            document.getElementsByName(e[0])[0].value = e[1];
-          });
-        }
-      });
+          if (e.target.innerHTML === "Create") {
+            CleanForm()
+            RenderTable();
+            document.getElementById("action-form-edit").style.display = 'none';
+            document.getElementById("action-form-add").style.display = "block";
+          }
+          if (e.target.innerHTML === "Close") {
+            CleanForm()
+            document.getElementById("action-form-add").style.display = "none";
+            document.getElementById("action-form-edit").style.display = 'none';
+          }
+          if (e.target.innerHTML === "View") {
+            CleanForm()
+            RenderTable();
+            document.getElementById("action-form-edit").style.display = 'block';
+            document.getElementById("action-form-add").style.display = "none";
+            let id = e.target.parentNode.parentNode.childNodes[0].innerHTML
+            let data = save.filter((e) => e.id === id);
+            Object.entries(data[0]).map((e) => {
+              document.getElementsByName(e[0])[0].value = e[1];
+            });
+          }
+        });
       return div;
     } catch (error) { 
     }
@@ -234,7 +234,7 @@ export let useGenerateTableCRUD = function () {
           dataEdit.id = formData[index].value;
           dataEdit.data = {
             ...dataEdit.data,
-            [formData[index].name]: Number(formData[index].value),
+            [formData[index].name]: formData[index].value
           };
         } else if (formData[index]?.name !== "") {
           dataEdit.data = {

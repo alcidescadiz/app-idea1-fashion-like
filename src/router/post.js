@@ -1,7 +1,8 @@
 import {Router } from 'express'
 const router = Router()
-import { allPost } from '../controller/post.controller.js'
+import { allPost, createPost } from '../controller/post.controller.js'
 
 router.get('/', allPost)
+router.post('/', createPost)
 
 export {router}

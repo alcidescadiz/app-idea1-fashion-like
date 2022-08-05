@@ -1,0 +1,19 @@
+# @api = https://app-fashion-like.herokuapp.com/v1-api-post
+@api = http://localhost:3001/v1-api-post
+@token = 
+
+
+### todos los post
+GET  {{api}}
+x-access-token : {{token}}
+
+### crear un usuario
+POST  {{api}}
+x-access-token : {{token}}
+content-type: application/json
+
+{
+    "post": "post6",
+    "img":"./imagenes/post6.jpg",
+    "voto":"like"
+}
