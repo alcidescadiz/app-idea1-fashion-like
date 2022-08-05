@@ -1,0 +1,13 @@
+# @api = https://app-fashion-like.herokuapp.com/v1-api-register
+@api = http://localhost:3001/v1-api-login
+@token = 
+
+
+### logueo un usuario
+POST  {{api}}
+content-type: application/json
+
+{
+      "email": "teresa@mail.com",
+      "password": "123456"
+}

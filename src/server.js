@@ -1,5 +1,5 @@
 import app from "./app.js"
-import { createConnection } from "./config/dataLowDb.js";
+import { createConnection } from "./services/dataLowDb.js";
 
 createConnection();
 // Puerto

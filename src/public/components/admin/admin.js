@@ -45,31 +45,35 @@ getModal('formulario', 'Form Modal',{
 document.addEventListener("submit", (e) => {
     // añadir - add
     e.preventDefault();
-    if (document.querySelector("#action-form-add").style.display === "block") {
-       /**
-       * logica de add de base de datos
-       */
-      if(confirm('Desea agregar datos?')){
-        eventForm();
-        setObjectInArray({ value: getData(), mode: "add" });
-        RenderTable();
+    try {
+      if (document.querySelector("#action-form-add").style.display === "block") {
+         /**
+         * logica de add de base de datos
+         */
+        if(confirm('Desea agregar datos?')){
+          eventForm();
+          setObjectInArray({ value: getData(), mode: "add" });
+          RenderTable();
+        }
       }
-    }
-    //--- editar - edit---
-    if (document.querySelector("#action-form-edit").style.display === "block") {
-       /**
-       * logica de edit de base de datos
-       */
-      if(confirm('Desea editar los datos?')){
-        console.log('editando')
-        eventFormEdit();
-        setObjectInArray({
-          value: getIdDataEdit().data,
-          mode: "update",
-          id: Number(getIdDataEdit().id),
-        });
-        RenderTable();
+      //--- editar - edit---
+      if (document.querySelector("#action-form-edit").style.display === "block") {
+         /**
+         * logica de edit de base de datos
+         */
+        if(confirm('Desea editar los datos?')){
+          console.log('editando')
+          eventFormEdit();
+          setObjectInArray({
+            value: getIdDataEdit().data,
+            mode: "update",
+            id: Number(getIdDataEdit().id),
+          });
+          RenderTable();
+        }
       }
+    } catch (error) {
+      
     }
   });
   

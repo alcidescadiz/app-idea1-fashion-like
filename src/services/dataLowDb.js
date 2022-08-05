@@ -1,13 +1,9 @@
 import { Low, JSONFile } from "lowdb";
-import { join, dirname } from "path";
-import { fileURLToPath } from "url";
-
+import {__dirname, path} from '../utils/dirPath.js'
 let db;
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-
 export async function createConnection() {
-  const file = join(__dirname, "../db.json");
+  const file = path.join(__dirname, "../db.json");
   const adapter = new JSONFile(file);
   db = new Low(adapter);
 

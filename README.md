@@ -6,6 +6,9 @@
 * Dotenv
 * Cors
 * Ejs
+* Jwt
+* Uuid
+* LowDb
 * Heroku
 
 ### Disponible en : https://app-fashion-like.herokuapp.com/

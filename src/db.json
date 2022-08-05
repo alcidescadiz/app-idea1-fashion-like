@@ -1,4 +1,68 @@
 {
   "post": [],
-  "users": []
+  "users": [
+    {
+      "id": "59363a3f-cfbf-5288-bf9b-37d3e6ce834b",
+      "name": "alcides",
+      "lastname": "cadiz",
+      "email": "teresa@mail.com",
+      "password": "123456"
+    },
+    {
+      "id": "59363a3f-cfbf-48bd-bf9b-37d3e6ce834b",
+      "name": "teresa",
+      "lastname": "cadiz",
+      "email": "teresa@mail.com",
+      "password": "123456"
+    },
+    {
+      "id": "431bd5c6-1740-423f-bb34-d4367d07bb6d",
+      "name": "antonio",
+      "lastname": "cadiz",
+      "email": "antonio@mail.com",
+      "password": "123456"
+    },
+    {
+      "id": "8c47242a-5bba-4551-b302-488e48f5b61b",
+      "name": "pedro",
+      "lastname": "cadiz",
+      "email": "pero@mail.com",
+      "password": "123456"
+    },
+    {
+      "id": "24373310-0af9-4bb2-9e80-00471e743154",
+      "name": "guatavo",
+      "lastname": "perez",
+      "email": "mperez@mail.com",
+      "password": "dhyjdegky"
+    },
+    {
+      "id": "8f3dd2b4-af21-4c5f-a96f-4e13fe27375c",
+      "name": "alcidescadiz",
+      "lastname": "CADIZ",
+      "email": "alcides.cadiz@gmail.com",
+      "password": "XFJSFYJ"
+    },
+    {
+      "id": "bfaaa991-1c21-4b76-baf3-34cad2980e7a",
+      "name": "adrian",
+      "lastname": "perez",
+      "email": "adriam@mail.com",
+      "password": "rgertgwrt"
+    },
+    {
+      "id": "8f2753a3-3ad7-4016-996d-4e39c3c68754",
+      "name": "alfredo",
+      "lastname": "masias",
+      "email": "alfredo@mail.com",
+      "password": "ergqegw"
+    },
+    {
+      "id": "ae14a6fc-0f8a-4715-80db-f57bf50707b6",
+      "name": "alicia",
+      "lastname": "perez",
+      "email": "alicia@mail.com",
+      "password": "ku6yrbkir"
+    }
+  ]
 }
