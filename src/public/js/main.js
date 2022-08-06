@@ -4,7 +4,7 @@ let [Loading, Route, Render, RenderEvent, PageNotFound, Login] = Router();
 
 
 Route({                    template: Menu,        props: [Login],  protect: false  });
-Route({ path: "",          template: Gallery,                      protect: false  });
+Route({ path: "",          template: Gallery,     props: [Login],  protect: false  });
 Route({ path: "#login",    template: login,       props: [Login],  protect: false  });
 Route({ path: "#register", template: Register,                     protect: false  });
 Route({ path: "#admin",    template: Admin,                        protect: true   });

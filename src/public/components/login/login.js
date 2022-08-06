@@ -1,10 +1,10 @@
 export function Login([fn]) {
     let div = document.createElement('div')
     let templete= `
-     <div class='container'>
+     <div class='container pb-5'>
         <div class="display-1 text-center"> Login</div>
         <hr class="border border-danger border-2 opacity-50">
-        <form id="submitLogin" class="container">
+        <form id="submitLogin" class="container pb-5">
             <div class="mb-3 row">
                 <label for="inputPassword" class="col-sm-2 col-form-label">Email</label>
                 <div class="col-sm-10">
@@ -38,14 +38,14 @@ export function Login([fn]) {
                         body: JSON.stringify(data),
                         method:'POST',
                         headers:{
-                            'Content-Type': 'application/json',
-                            "x-access-token": "yfkuyfu"
+                            'Content-Type': 'application/json'
                         }
                     }
                 ).then(res => res.json())
                  .then(json => {
-                    if(json.token){
-                        fn({status: true, token:json.token })
+                    if(json.user){
+                        console.log(json)
+                        fn({status: true, name:json.user })
                         document.getElementById('submitLogin').reset()
                         window.location.hash= '#'               
                     }else{

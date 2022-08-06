@@ -1,7 +1,7 @@
 export let useGenerateTableCRUD = function () {
   //---- gestionar array de objetos----//
   let save = [];
-  let inicialArrayObjects = (array)=>  save = array.map((e) => {return {id: e.id, ...e}});
+  let inicialArrayObjects = (array)=>  save = array.map((e) => {return {id: e.id, ...e}})||[];
   let getArrayObjects = () => save.sort((e, p) => e.id - p.id);
   let setObjectInArray = ({ value, mode, id }) => {
     try {
@@ -94,7 +94,7 @@ export let useGenerateTableCRUD = function () {
         </div>
         `;
   };
-  let setTempleteArray = (array, tableClass = "container table") => {
+  let setTempleteArray = (array, tableClass = "container table pb-5") => {
     try {
       let div = document.createElement("div");
       let table = document.createElement("table");
@@ -152,7 +152,7 @@ export let useGenerateTableCRUD = function () {
   function componentTable() {
     try {
       let div = document.createElement("div");
-      div.classList = "container";
+      div.classList = "container pb-5";
       let message = document.createElement("div");
       message.id = "form-message";
       message.classList = "container";

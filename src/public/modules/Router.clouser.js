@@ -1,7 +1,7 @@
 let Router = () => {
     let loading = `Loading....`;
     //let template = ``;
-    let isLogin = { status: null, token: "" };
+    let isLogin = { status: null, name: "" };
     let Routes = [];
     let NotFount = document.createElement('h1')
       NotFount.innerHTML= '<h2 class="container">Page not found</h2>'
@@ -54,8 +54,8 @@ let Router = () => {
       }
     };
     let PageNotFound = (addNotFound) => (NotFount = addNotFound);
-    let Login = ({ status, token } = isLogin) => {
-      isLogin = { status, token };
+    let Login = ({ status, name } = isLogin) => {
+      isLogin = { status, name };
       return isLogin;
     };
     return [Loading, Route, Render, RenderEvent, PageNotFound, Login];

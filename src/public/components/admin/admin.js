@@ -31,18 +31,23 @@ getModal('formulario', 'Form Modal',{
  * Estado inicial dela base de datos-- USAR ESTA PARA EL FECTH
  */
 
- fetch(window.location.origin+'/v1-api-post',
- {
-     method:'GET',
-     headers:{
-         'Content-Type': 'application/json',
-         "x-access-token": "yfkuyfu"
-     }
- }
- ).then(res => res.json())
-  .then(json => {
-    inicialArrayObjects(json.posts)
-  })
+ window.addEventListener("hashchange", (e) => {
+   if (window.location.hash=== '#admin' ){
+       fetch(window.location.origin+'/v1-api-post',
+       {
+           method:'GET',
+           headers:{
+               'Content-Type': 'application/json',
+               "x-access-token": "yfkuyfu"
+           }
+       }
+       ).then(res => res.json())
+        .then(json => {
+          inicialArrayObjects(json.posts)
+      })
+   }
+});
+
 
 /**
  * Acciones crud:

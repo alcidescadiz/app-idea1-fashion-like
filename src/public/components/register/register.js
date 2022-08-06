@@ -1,10 +1,10 @@
 export function Register() {
     let div = document.createElement('div')
     let templete= `
-     <div class='container'>
+     <div class='container pb-5'>
         <div class="display-1 text-center"> Register</div>
         <hr class="border border-danger border-2 opacity-50">
-        <form id="submitRegister" class="container">
+        <form id="submitRegister" class="container pb-5">
             <div class="mb-3 row">
                 <label for="inputPassword" class="col-sm-2 col-form-label">Name</label>
                 <div class="col-sm-10">
