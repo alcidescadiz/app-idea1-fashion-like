@@ -37,8 +37,7 @@ getModal('formulario', 'Form Modal',{
        {
            method:'GET',
            headers:{
-               'Content-Type': 'application/json',
-               "x-access-token": "yfkuyfu"
+               'Content-Type': 'application/json'
            }
        }
        ).then(res => res.json())
@@ -73,8 +72,7 @@ document.addEventListener("submit", (e) => {
               body: JSON.stringify(getData()),
               method:'POST',
               headers:{
-                  'Content-Type': 'application/json',
-                  "x-access-token": "yfkuyfu"
+                  'Content-Type': 'application/json'
               }
           }
       ).then(res => {
@@ -123,5 +121,6 @@ document.addEventListener("submit", (e) => {
         RenderTable();
       }
     }
+
+
   });
-  

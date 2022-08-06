@@ -44,8 +44,7 @@ export function Login([fn]) {
                 ).then(res => res.json())
                  .then(json => {
                     if(json.user){
-                        console.log(json)
-                        fn({status: true, name:json.user })
+                        fn({status: true, name:json.user, like:json.like, dislike:json.dislike })
                         document.getElementById('submitLogin').reset()
                         window.location.hash= '#'               
                     }else{

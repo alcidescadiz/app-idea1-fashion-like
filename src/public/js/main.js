@@ -24,3 +24,28 @@ window.addEventListener('DOMContentLoaded', ()=>{
     `
     console.log(text)
 }, {once:true})
+
+document.addEventListener("click", (e) => {
+    if(e.target.innerHTML === "Like" || e.target.innerHTML === "Dislike"){
+      fetch(window.location.origin+'/v1-api-users/favorite',
+          {
+              body: JSON.stringify({
+                data: e.target.name,
+                likeDislike: e.target.innerHTML.toLowerCase()
+              }),
+              method:'POST',
+              headers:{
+                  'Content-Type': 'application/json'
+              }
+          }
+      ).then(res => res.json())
+        .then(json => {
+          if(json.user){
+            Login({ status:true, name: json.user.name, like:json.user.like,  dislike:json.user.dislike })
+            Render();
+            console.log('render like o dislike')
+          }
+      })
+    }
+
+  });

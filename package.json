@@ -9,7 +9,7 @@
     "npm": "8.10.0"
   },
   "scripts": {
-    "dev": "nodemon src/server --ignore db.json",
+    "dev": "nodemon src/server --ignore db.json ",
     "start": "node src/server --ignore db.json"
   },
   "keywords": [],

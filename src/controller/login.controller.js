@@ -19,7 +19,7 @@ export async function Login(req, res) {
           httpOnly: true,
         })
         .status(200)
-        .json({ user: user.name });
+        .json({ user: user.name, like: user.like, dislike: user.dislike });
     } else {
       throw "Error en los datos";
     }

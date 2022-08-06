@@ -6,7 +6,7 @@ export function Register(req, res) {
     try {
       const { name, lastname, email, password } = req.body;
       if(!isEmailUnique(email, database)) throw "Email ya registrado"
-      addDB({ id:v4() ,name, lastname, email, password, favorities: [] }, database)
+      addDB({ id:v4() ,name, lastname, email, password, like: [], dislike: [] }, database)
       res
         .status(200)
         .send({msg: "Usuario agregado con éxito"});

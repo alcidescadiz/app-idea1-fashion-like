@@ -27,3 +27,13 @@ export function removeOneDb(params) {
 export function updateOnedB(params) {
     
 }
+
+export function addFavoriteToUser(idUser, idPost,likeDislike, database) {
+    const user = getConnection().data[database].map(e=> {
+        if (e.id !==  idUser) return e
+        e[likeDislike].push(idPost)
+        return e
+    })
+    getConnection().write()
+    return user
+}

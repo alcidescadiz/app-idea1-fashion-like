@@ -14,6 +14,7 @@ export async function Auth(req, res, next){
         }
         const {email, password} = jwt.verify(variable.token, KEY);
         const user = await getOneDb(email, 'users')
+        req.idUser = user.id
         if(email === user.email && password === user.password) next()
         return
     }

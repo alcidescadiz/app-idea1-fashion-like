@@ -94,9 +94,10 @@ export let useGenerateTableCRUD = function () {
         </div>
         `;
   };
-  let setTempleteArray = (array, tableClass = "container table pb-5") => {
+  let setTempleteArray = (array, tableClass = "container table pb-5 ") => {
     try {
       let div = document.createElement("div");
+      div.classList ='table-responsive pb-2'
       let table = document.createElement("table");
       let createTable =
         '<button type="button" class="d-flex btn btn-outline-primary btn-lg m-1" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Create</button>';
