@@ -2,6 +2,13 @@ import Router from "../modules/Router.clouser.js";
 import {Menu, Login as login,Admin ,Gallery,RenderGallery, Foot,Register} from '../components/index.js'
 let [Loading, Route, Render, RenderEvent, PageNotFound, Login] = Router();
 
+if (sessionStorage.getItem("sessionAppFashion")){
+    let {status, name, like, dislike } = JSON.parse(sessionStorage.getItem("sessionAppFashion"))
+    Login( {status, name, like, dislike })
+}else{
+    window.location.hash= '#login' 
+}
+
 
 Route({                    template: Menu,        props: [Login],  protect: false  });
 Route({ path: "",          template: Gallery,     props: [Login],  protect: false  });

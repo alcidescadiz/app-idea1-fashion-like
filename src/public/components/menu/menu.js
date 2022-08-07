@@ -47,6 +47,7 @@ export function Menu ([fn]){
                  .then(json => {
                         console.log(json)
                         fn({status: false, name:'' })
+                        sessionStorage.clear()
                         window.location.hash= '#login'               
                 })
         })

@@ -15,8 +15,7 @@ export async function Login(req, res) {
       const token = jwt.sign(user, KEY, { expiresIn: "48h" });
       res
         .cookie("app-fashion-token", token, {
-          expires: new Date(Date.now() + 60 * 60 * 60 * 24 * 2),
-          httpOnly: true,
+          expires: new Date(Date.now() + 60 * 60 * 60 * 24 * 2)
         })
         .status(200)
         .json({ user: user.name, like: user.like, dislike: user.dislike });

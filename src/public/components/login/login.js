@@ -45,6 +45,7 @@ export function Login([fn]) {
                  .then(json => {
                     if(json.user){
                         fn({status: true, name:json.user, like:json.like, dislike:json.dislike })
+                        sessionStorage.setItem("sessionAppFashion", JSON.stringify({status: true, name:json.user, like:json.like, dislike:json.dislike }))
                         document.getElementById('submitLogin').reset()
                         window.location.hash= '#'               
                     }else{
