@@ -76,7 +76,6 @@ document.addEventListener("submit", (e) => {
               }
           }
       ).then(res => {
-        console.log(res)
           if(res.statusText === 'OK'){
               document.getElementById('submitRegister')?.reset()
               //window.location.hash= '#'

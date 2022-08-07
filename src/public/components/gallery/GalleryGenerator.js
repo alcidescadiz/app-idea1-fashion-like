@@ -35,7 +35,6 @@ export let useGenerateGalleryCard = function () {
           return e;
         });
       }
-      console.log(save)
     } catch (error) {
     }
   };
@@ -51,7 +50,6 @@ export let useGenerateGalleryCard = function () {
                 </div>`
   let getTable = () => templeteArray;
   let setTempleteArray = (array,like = [], dislike=[], tableClass = "container table") => {
-    console.log({like, dislike})
     try {
       let div = document.createElement("div");
       let table = document.createElement("div");
@@ -73,9 +71,11 @@ export let useGenerateGalleryCard = function () {
               <div class="position-relative bottom-0 start-0 m-2">
                   <span class="badge rounded-pill text-bg-secondary">${e.date}</span>
               </div>
-              <div class="card-body">
-              ${like.includes(e.id)? templateLike: ''}
-              ${dislike.includes(e.id)? templateDislike: ''}
+              <div class="card-body" >
+                <div id=${e.id}>
+                  ${like.includes(e.id)? templateLike: ''}
+                  ${dislike.includes(e.id)? templateDislike: ''}
+                </div>
               <h5 class="card-title">${e.post}</h5>
               <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
               </div>
@@ -100,7 +100,7 @@ export let useGenerateGalleryCard = function () {
   };
 
   //-- renderizar la galeria
-  function RenderTable(like=[], dislike=[]) {
+  function RenderGallery(like=[], dislike=[]) {
     // inicializar tabla
     try {
       setTimeout(() => {
@@ -113,7 +113,6 @@ export let useGenerateGalleryCard = function () {
   // componente html
   function componentTable([fn]) {
     const {status, name, like, dislike} = fn()
-    console.log({status, name, like, dislike})
     try {
       let div = document.createElement("div");
       div.classList = "container";
@@ -124,25 +123,7 @@ export let useGenerateGalleryCard = function () {
       let tabla = document.createElement("div");
       tabla.id = "div-galeria";
       div.appendChild(tabla);
-      RenderTable(like, dislike);
-      //--- eventos---
-      
-      document.addEventListener("click", (e) => {
-        if (e.target.innerHTML === "Like") {
-          let idCard = e.target.name
-          //RenderTable();
-          document.getElementById(idCard).innerHTML = templateLike
-          console.log('like')
-          e.stopImmediatePropagation()
-        }
-        if (e.target.innerHTML === "Dislike") {
-          let idCard = e.target.name
-          //RenderTable();
-          document.getElementById(idCard).innerHTML = templateDislike
-          console.log('dislike')
-          e.stopImmediatePropagation()
-        }
-      });
+      RenderGallery(like, dislike);
       return div;
     } catch (error) { 
     }
@@ -152,7 +133,7 @@ export let useGenerateGalleryCard = function () {
     inicialArrayObjects,
     getArrayObjects,
     setObjectInArray,
-    RenderTable,
+    RenderGallery,
     componentTable
   };
 };

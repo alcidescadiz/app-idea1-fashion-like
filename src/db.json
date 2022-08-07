@@ -86,11 +86,13 @@
       "email": "teresa@mail.com",
       "password": "123456",
       "like": [
-        "bc0ddbef-8181-4303-ab60-8f7cabc2a6a3"
+        "8a94a788-37af-4903-a10b-5d966123e6a9"
       ],
       "dislike": [
-        "8a94a788-37af-4903-a10b-5d966123e6a9"
-      ]
+        "52f53a31-effc-40aa-9006-4f1c679bf3f9",
+        "8af2d9d2-a2b5-47af-97df-6623a057d9e3"
+      ],
+      "role": "admin"
     }
   ]
 }
