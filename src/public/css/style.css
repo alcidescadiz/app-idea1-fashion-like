@@ -14,3 +14,13 @@ html, body {
     left: 0;
     width: 100%;
   }
+
+  table{
+    table-layout: fixed;
+    width: 100px;
+}
+
+.tdth {
+    width: 100px;
+    word-wrap: break-word;
+}

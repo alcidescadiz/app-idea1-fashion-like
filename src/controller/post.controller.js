@@ -1,5 +1,5 @@
 import { v4 } from "uuid";
-import { addDB, getAllDb } from "../services/lowdb.repository.js";
+import { addDB, getAllDb, removePost, updatingPost } from "../services/lowdb.repository.js";
 const database = "post"
 
 export async function allPost(req, res){
@@ -29,4 +29,36 @@ export function createPost(req, res){
           msg: "Algo mal ha pasado revise los datos enviados",
         });
       }
+}
+export async function deletePost(req, res){
+  try {
+      const { idpost } = req.params;
+      let response = await removePost(idpost, database)
+      if(response === false) throw "No se pudo eliminar o post ya no existe";
+      res
+        .status(200)
+        .send({msg: "Post eliminado con éxito"});
+    } catch (error) {
+      res.status(400).send({
+        error: error,
+        msg: "Algo mal ha pasado revise los datos enviados",
+      });
+    }
+}
+
+export async function updatePost(req, res){
+  try {
+      const { idpost } = req.params;
+      const { post, img } = req.body.data;
+      let response = await updatingPost({idpost, post, img }, database)
+      if(response === false) throw "No se pudo actualizar o post ya no existe";
+      res
+        .status(200)
+        .send({msg: "Post eliminado con éxito"});
+    } catch (error) {
+      res.status(400).send({
+        error: error,
+        msg: "Algo mal ha pasado revise los datos enviados",
+      });
+    }
 }

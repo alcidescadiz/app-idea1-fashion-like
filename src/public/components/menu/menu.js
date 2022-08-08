@@ -1,10 +1,20 @@
+"use strict"
+// @ts-check
+
+/**
+ * @function
+ * @name Manu
+ * @param {Array<any>} fn 
+ * @returns {HTMLDivElement} Componente Html del Menu
+ */
 export function Menu ([fn]){
-    let {status, name} = fn()
+    let {status, email} = fn()
     let login = status === false || status === null ? `<a class="nav-link active" aria-current="page" href='#login'> Login </a>` : ''
     let register = status === false || status === null ? `<a class="nav-link active" aria-current="page" href="#register"> Register </a>` : ''
-    let admin = status === true ? `<a class="nav-link active" aria-current="page"href='#admin'> Admin </a>` : ''
-    let logout = status === true ? `<button class="btn btn-outline-success" id="btnLogout">${name} - LogOut</button>` : '<button class="d-none" id="btnLogout"></button>'
+    let admin = status === true && email === 'admin@mail.com' ? `<a class="nav-link active" aria-current="page"href='#admin'> Admin </a>` : ''
+    let logout = status === true ? `<button class="btn btn-outline-success" id="btnLogout">${email} - LogOut</button>` : '<button class="d-none" id="btnLogout"></button>'
     let div = document.createElement('div')
+    //@ts-ignore: Object is possibly 'null'.
     div.classList = "sticky-top"
     let templete= `
      <nav class="navbar navbar-expand-sm bg-light">
@@ -45,9 +55,9 @@ export function Menu ([fn]){
                     }
                 ).then(res => res.json())
                  .then(json => {
-                        console.log(json)
-                        fn({status: false, name:'' })
+                        fn({status: false, email:'' })
                         sessionStorage.clear()
+                        document.cookie = "app-fashion-token=0"
                         window.location.hash= '#login'               
                 })
         })

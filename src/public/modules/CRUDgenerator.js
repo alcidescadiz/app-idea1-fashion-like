@@ -1,7 +1,11 @@
+"use strict"
+// @ts-check
+
 export let useGenerateTableCRUD = function () {
   //---- gestionar array de objetos----//
+  /**@type {array} */
   let save = [];
-  let inicialArrayObjects = (array)=>  save = array.map((e) => {return {id: e.id, ...e}})||[];
+  let inicialArrayObjects = (array)=>  save = array.map((e) => ({id: e.id, post:e.post,img:e.img, date:e.date}))||[];
   let getArrayObjects = () => save.sort((e, p) => e.id - p.id);
   let setObjectInArray = ({ value, mode, id }) => {
     try {
@@ -39,7 +43,8 @@ export let useGenerateTableCRUD = function () {
     }
   };
   //-------- gestion del modal--------//
-  let templeteArray = ``;
+  /**@type {HTMLDivElement} */
+  let templeteArray;
   let modal = ``;
   let idForm = '';
   let getTable = () => templeteArray;
@@ -94,9 +99,10 @@ export let useGenerateTableCRUD = function () {
         </div>
         `;
   };
-  let setTempleteArray = (array, tableClass = "container table pb-5 ") => {
+  let setTempleteArray = (array, tableClass = "container align-middle table pb-5 ") => {
     try {
       let div = document.createElement("div");
+
       div.classList ='table-responsive pb-2'
       let table = document.createElement("table");
       let createTable =
@@ -108,22 +114,22 @@ export let useGenerateTableCRUD = function () {
         return (templeteArray = div);
       }
       let headers =
-        `<thead><tr>` +
+        `<thead><tr class="" style="width:100px">` +
         Object.entries(array[0])
-          .map((e) => `<th>${e[0].toUpperCase()}</th>`)
+          .map((e) => `<th class="tdth">${e[0].toUpperCase()}</th>`)
           .join("") +
-        "<th class='text-center' >ACCIONS</th></tr></thead>";
+        "<th class='text-center ' style='width: 150px;'>ACCIONS</th></tr></thead>";
       let view =
         '<button type="button" class="btn btn-primary edit m-1" data-bs-toggle="modal" data-bs-target="#staticBackdrop">View</button>';
-      let accions = `<td class='text-center'>${view}<button class='btn btn-danger delete m-1' >Delete</button></td>`;
+      let accions = `<td class='text-center' >${view}<button class='btn btn-danger delete m-1' >Delete</button></td>`;
       let renderTable =
         `<tbody class="table-group-divider">` +
         array
           .map((e) => {
             return (
-              "<tr>" +
+              "<tr class=''>" +
               Object.entries(e)
-                .map((e) => `<td>${e[1]}</td>`)
+                .map((e) => `<td class="tdth">${e[1]}</td>`)
                 .join(" ") +
               accions +
               "</tr>"
@@ -149,13 +155,19 @@ export let useGenerateTableCRUD = function () {
     } catch (error) {
     }
   }
-  // componente html
-  function componentTable() {
-    try {
+  /**
+ * @function
+ * @name componentTable
+ * @returns {HTMLDivElement} 
+ */
+  function componentTable([fn]) {
       let div = document.createElement("div");
+      if(fn().email !== 'admin@mail.com') return div
+      //@ts-ignore: Object is possibly 'null'.
       div.classList = "container pb-5";
       let message = document.createElement("div");
       message.id = "form-message";
+      //@ts-ignore: Object is possibly 'null'.
       message.classList = "container";
       div.appendChild(message);
       let tabla = document.createElement("div");
@@ -166,12 +178,12 @@ export let useGenerateTableCRUD = function () {
       div.appendChild(divModal);
       RenderTable();
       function CleanForm(){
-        //divModal.innerHTML = ``
-        //modal = ``
+        //@ts-ignore: Object is possibly 'null'.
         document.getElementById(idForm)?.reset();
       }
       //--- eventos---
       document.addEventListener("click", (e) => {
+        //@ts-ignore: Object is possibly 'null'.
           if (e.target.innerHTML === "Create") {
             CleanForm()
             RenderTable();
@@ -191,13 +203,12 @@ export let useGenerateTableCRUD = function () {
             let id = e.target.parentNode.parentNode.childNodes[0].innerHTML
             let data = save.filter((e) => e.id === id);
             Object.entries(data[0]).map((e) => {
+              //@ts-ignore: Object is possibly 'null'.
               document.getElementsByName(e[0])[0].value = e[1];
             });
           }
         });
       return div;
-    } catch (error) { 
-    }
   }
   //----- acciones del form----------//
   let data = {};
@@ -244,7 +255,6 @@ export let useGenerateTableCRUD = function () {
           };
         }
       }
-      document.getElementById(idForm).reset();
       messageForm( msg || 'Elemento editado satisfactoriamente')
       return dataEdit;
     } catch (error) {

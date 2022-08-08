@@ -18,7 +18,7 @@ export async function Login(req, res) {
           expires: new Date(Date.now() + 60 * 60 * 60 * 24 * 2)
         })
         .status(200)
-        .json({ user: user.name, like: user.like, dislike: user.dislike });
+        .json({ email: user.email, like: user.like, dislike: user.dislike });
     } else {
       throw "Error en los datos";
     }

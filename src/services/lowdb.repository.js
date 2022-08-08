@@ -2,8 +2,48 @@ import {getConnection} from "./dataLowDb.js";
 
 
 export async function addDB(params, database) {
-    getConnection().data[database].push(params)
-    getConnection().write()
+    try {
+        getConnection().data[database].push(params)
+        await getConnection().write()
+        return true
+    } catch (error) {
+        return false
+    }
+}
+
+export async function removePost(idPost, database) {
+    try {
+        const searchPost = getConnection().data[database].filter(e => e.id === idPost)
+        if(searchPost.length < 1) return false
+        const newPost = await getConnection().data[database].filter(e => e.id !== idPost)
+        getConnection().data[database] = newPost
+        await getConnection().write()
+        return true
+    } catch (error) {
+        return false
+    }
+
+}
+
+export async function updatingPost({idpost, post, img}, database) {
+    try {
+        const searchPost = getConnection().data[database].filter(e => e.id === idpost)
+        if(searchPost.length < 1) return false
+        const updatePost = await getConnection().data[database].map(e => {
+            if(e.id === idpost){
+               e.id = idpost
+               e.post = post
+               e.img = img
+               e.date = new Date().toString().split(' ').splice(0,4).join(" ")
+               return e
+            }
+        })
+        await getConnection().write()
+        return true
+    } catch (error) {
+        return false
+    }
+
 }
 
 export async function getOneDb(email, database) {

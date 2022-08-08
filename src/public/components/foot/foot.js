@@ -1,5 +1,14 @@
+"use strict"
+// @ts-check
+
+/**
+ * @function
+ * @name Foot
+ * @returns {HTMLDivElement} 
+ */
 export function Foot() {
     let div = document.createElement('div')
+    /**@type {string} */
     let template = `
     <br>
     <br>

@@ -1,3 +1,11 @@
+"use strict"
+// @ts-check 
+
+/**
+ * @function
+ * @name Register
+ * @return {HTMLDivElement} 
+ */
 export function Register() {
     let div = document.createElement('div')
     let templete= `
@@ -38,29 +46,41 @@ export function Register() {
     `
     try {
         setTimeout(()=>{
-            document.getElementById('submitRegister').addEventListener('submit',(e)=>{
-                e.preventDefault()
-                let data = {};
-                let formData = document.getElementById('submitRegister').elements;
-                for (let index = 0; index < 4; index++) {
-                    data[formData[index].name] = formData[index].value;
-                }
-                fetch(window.location.origin+'/v1-api-register',
-                    {
-                        body: JSON.stringify(data),
-                        method:'POST',
-                        headers:{
-                            'Content-Type': 'application/json',
-                            "x-access-token": "yfkuyfu"
+            let submitRegister = document.getElementById('submitRegister')
+            if (submitRegister !== null){
+                submitRegister.addEventListener('submit',(e)=>{
+                    e.preventDefault()
+                    let data = {};
+                    //@ts-ignore: Object is possibly 'null'.
+                    let formData = submitRegister.elements
+                    for (let index = 0; index < 4; index++) {
+                        data[formData[index].name] = formData[index].value;
+                    }
+                    // TODO: AÑADIR VALIDACIONES FRONT Y BACK
+                    fetch(window.location.origin+'/v1-api-register',
+                        {
+                            body: JSON.stringify(data),
+                            method:'POST',
+                            headers:{
+                                'Content-Type': 'application/json',
+                                "x-access-token": "yfkuyfu"
+                            }
                         }
-                    }
-                ).then(res => {
-                    if(res.statusText === 'OK'){
-                        document.getElementById('submitRegister').reset()
-                        window.location.hash= '#'
-                    }
-                })
-            },{once:true})
+                    ).then(res => {
+                        if(res.statusText === 'OK'){
+                            //@ts-ignore: Object is possibly 'null'.
+                            submitRegister.reset()
+                            window.location.hash= '#login'
+                            alert('Ya puede iniciar sesión!!')
+                        }else{
+                            //TODO: MENSAJE DE QUE NO SE PUDO REGISTRAR 
+                            console.log(res)
+                            console.log('no hay respuesta espere')
+                            window.location.hash= '#register'
+                        }
+                    })
+                },{once:true})
+            }
         },10)
     } catch (error) {
     }

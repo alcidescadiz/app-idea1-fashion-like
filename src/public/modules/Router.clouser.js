@@ -1,33 +1,58 @@
+"use strict"
+// @ts-check
+
 let Router = () => {
     let loading = `Loading....`;
     //let template = ``;
-    let isLogin = { status: null, name: "", like:[], dislike:[] };
+    /**
+     *@type {{status:null|boolean, name:string, like:Array, dislike:Array}}
+     */
+    let isLogin = { status: null, email: "", like:[], dislike:[] };
     let Routes = [];
     let NotFount = document.createElement('h1')
       NotFount.innerHTML= '<h2 class="container">Page not found</h2>'
+
+    /**
+     * @param {*} addLoading 
+     * @returns 
+     */  
     let Loading = (addLoading) => (loading = addLoading);
-    let Route = ({ path = null, template, protect = false, props = "" }) => {
+
+    /**
+     * Route Añadir rutas al SPA
+     * @param {{path:string|null,template:HTMLDivElement, protect:boolean, props:Array<any> }}  Object
+     */
+    let Route = ({ path = null, template, protect = false, props = [] }) => {
       Routes.push({ path, template, protect, props });
     };
-    let Render = () => {
+
+    /**
+     * @function Render
+     * @params {string} idDiv
+     * @returns void
+     */
+    let Render = (idDiv ='root') => {
+      /**@type {HTMLElement} */
+      //@ts-ignore: Object is possibly 'null'.
+      let divRoot = document.getElementById(idDiv)
       try {
-        document.getElementById("root").innerHTML = loading
+        divRoot.innerHTML = loading
         if (Routes.length === 0) {
-          document.getElementById("root").innerHTML = ''
-          document.getElementById("root").appendChild(NotFount);
+          divRoot.innerHTML = ''
+          divRoot.appendChild(NotFount);
           return;
         }
         setTimeout(() => {
-          document.getElementById("root").innerHTML = ''
+          divRoot.innerHTML = ''
           let pathname = window.location.hash;
           if (!Routes.map((e) => e.path).includes(pathname)) {
-            document.getElementById("root").appendChild(NotFount);
+            divRoot.appendChild(NotFount);
             return;
           } else {
             Routes.map((e, i) => {
               if ((e.path === null || e.path === pathname) && e.protect === false) {
                 //template += e.template(e.props);
-                document.getElementById("root").append(e.template([...e.props]));
+                divRoot.append(e.template([...e.props]));
               } else {
                 if (
                   e.path === pathname &&
@@ -35,7 +60,7 @@ let Router = () => {
                   e.protect === true
                 ) {
                   //template += e.template(e.props);
-                  document.getElementById("root").append(e.template([...e.props]));
+                  divRoot.append(e.template([...e.props]));
                 }
               }
             });
@@ -54,8 +79,14 @@ let Router = () => {
       }
     };
     let PageNotFound = (addNotFound) => (NotFount = addNotFound);
-    let Login = ({ status, name, like,  dislike } = isLogin) => {
-      isLogin = { status, name, like,  dislike  };
+
+    /**
+     * @name Login
+     * @param {{status:null|boolean, name:string, like:Array, dislike:Array}} param0 
+     * @returns 
+     */
+    let Login = ({ status, email, like,  dislike } = isLogin) => {
+      isLogin = { status, email, like,  dislike  };
       return isLogin;
     };
     return [Loading, Route, Render, RenderEvent, PageNotFound, Login];

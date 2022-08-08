@@ -7,7 +7,7 @@
 GET  {{api}}
 x-access-token : {{token}}
 
-### crear un usuario
+### crear un post
 POST  {{api}}
 x-access-token : {{token}}
 content-type: application/json
@@ -17,3 +17,8 @@ content-type: application/json
     "img":"./imagenes/post6.jpg",
     "voto":"like"
 }
+
+### eliminar un post
+DELETE  {{api}}/c84545c4-a19e-4f8f-94c5-28d5fd445d2e
+x-access-token : {{token}}
+content-type: application/json

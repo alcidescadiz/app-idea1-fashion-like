@@ -1,5 +1,9 @@
+"use strict"
+// @ts-check
+
 export let useGenerateGalleryCard = function () {
   //---- gestionar array de objetos----//
+  /**@type {array} */
   let save = [];
   let inicialArrayObjects = (array)=>  save = array.map((e) => {return {id: e.id, ...e}});
   let getArrayObjects = () => save.sort((e, p) => e.id - p.id);
@@ -22,7 +26,6 @@ export let useGenerateGalleryCard = function () {
       }
       if (mode === "delete") {
           save = save.filter((e) => e.id !== id)
-          messageForm( 'Elemento eliminado satisfactoriamente', 'alert-primary' )
       };
       if (mode === "update") {
         save = save.map((e) => {
@@ -39,11 +42,14 @@ export let useGenerateGalleryCard = function () {
     }
   };
   //-------- gestion del template--------//
-  let templeteArray = ``;
+  /**@type {HTMLElement} */
+  let templeteArray;
+    /**@type {string} */
   let templateLike= `
                 <div class="position-absolute top-0 end-0 m-2">
                     <span class="badge rounded-pill text-bg-success">Favorite</span>
                 </div>`
+  /**@type {string} */
   let templateDislike= `
                 <div class="position-absolute top-0 end-0 m-2">
                     <span class="badge rounded-pill text-bg-danger">Disapprove</span>
@@ -53,6 +59,7 @@ export let useGenerateGalleryCard = function () {
     try {
       let div = document.createElement("div");
       let table = document.createElement("div");
+      //@ts-ignore: Object is possibly 'null'.
       table.classList = tableClass;
       if (array.length < 1) {
         return (templeteArray = div);
@@ -100,24 +107,36 @@ export let useGenerateGalleryCard = function () {
   };
 
   //-- renderizar la galeria
+  /**
+   * @param {Array<string>} like 
+   * @param {Array<string>} dislike 
+   */
   function RenderGallery(like=[], dislike=[]) {
     // inicializar tabla
     try {
       setTimeout(() => {
         setTempleteArray(getArrayObjects(), like, dislike)
+        //@ts-ignore: Object is possibly 'null'.
         document.getElementById("div-galeria").replaceChildren(getTable());
       }, 10);
     } catch (error) {
     }
   }
-  // componente html
-  function componentTable([fn]) {
-    const {status, name, like, dislike} = fn()
-    try {
+
+  /**
+  * @function
+  * @name componentGallery
+  * @param {Array<any>} fn 
+  * @returns {HTMLDivElement} 
+  */
+  function componentGallery([fn]) {
+    const {like, dislike} = fn()
       let div = document.createElement("div");
+      //@ts-ignore: Object is possibly 'null'.
       div.classList = "container";
       let message = document.createElement("div");
       message.id = "form-message";
+      //@ts-ignore: Object is possibly 'null'.
       message.classList = "container";
       div.appendChild(message);
       let tabla = document.createElement("div");
@@ -125,8 +144,7 @@ export let useGenerateGalleryCard = function () {
       div.appendChild(tabla);
       RenderGallery(like, dislike);
       return div;
-    } catch (error) { 
-    }
+
   }
   
   return {
@@ -134,7 +152,7 @@ export let useGenerateGalleryCard = function () {
     getArrayObjects,
     setObjectInArray,
     RenderGallery,
-    componentTable
+    componentGallery
   };
 };
 

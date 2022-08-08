@@ -1,4 +1,13 @@
-export function Login([fn]) {
+"use strict"
+// @ts-check
+
+/**
+ * @function
+ * @name Login
+ * @param {Array<any>} fn 
+ * @returns {HTMLDivElement} 
+ */
+export function LoginHTML([fn]) {
     let div = document.createElement('div')
     let templete= `
      <div class='container pb-5'>
@@ -26,10 +35,13 @@ export function Login([fn]) {
     `
     try {
         setTimeout(()=>{
-            document.getElementById('submitLogin').addEventListener('submit',(e)=>{
+            let submitLogin = document.getElementById('submitLogin')
+            //@ts-ignore: Object is possibly 'null'.
+            submitLogin.addEventListener('submit',(e)=>{
                 e.preventDefault()
                 let data = {};
-                let formData = document.getElementById('submitLogin').elements;
+                //@ts-ignore: Object is possibly 'null'.
+                let formData = submitLogin.elements;
                 for (let index = 0; index < 2; index++) {
                     data[formData[index].name] = formData[index].value;
                 }
@@ -43,10 +55,11 @@ export function Login([fn]) {
                     }
                 ).then(res => res.json())
                  .then(json => {
-                    if(json.user){
-                        fn({status: true, name:json.user, like:json.like, dislike:json.dislike })
-                        sessionStorage.setItem("sessionAppFashion", JSON.stringify({status: true, name:json.user, like:json.like, dislike:json.dislike }))
-                        document.getElementById('submitLogin').reset()
+                    if(json.email){
+                        fn({status: true, email:json.email, like:json.like, dislike:json.dislike })
+                        sessionStorage.setItem("sessionAppFashion", JSON.stringify({status: true, email:json.email, like:json.like, dislike:json.dislike }))
+                        //@ts-ignore: Object is possibly 'null'.
+                        submitLogin.reset()
                         window.location.hash= '#'               
                     }else{
                         window.location.hash= '#register' 

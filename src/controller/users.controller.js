@@ -8,6 +8,7 @@ export function allUsers(req, res){
 export function addFavorite(req, res){
     const { data:idpost , likeDislike} =req.body
     const {idUser} = req
-    let user = addFavoriteToUser(idUser,idpost, likeDislike ,database )
+    let users = addFavoriteToUser(idUser,idpost, likeDislike ,database )
+    let user = users.filter(e=> e.id === idUser)
     res.json({user: user[0]})
 }

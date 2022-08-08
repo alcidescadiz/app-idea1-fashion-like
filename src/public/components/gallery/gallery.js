@@ -1,9 +1,12 @@
+"use strict"
+// @ts-check
+
 import { useGenerateGalleryCard } from "./GalleryGenerator.js";
-let { componentTable, inicialArrayObjects, RenderGallery } =
+let { componentGallery, inicialArrayObjects, RenderGallery,setObjectInArray } =
   useGenerateGalleryCard();
 
 //-- 1ro exportar componente
-export { componentTable as Gallery, RenderGallery };
+export { componentGallery as Gallery, inicialArrayObjects as inicialArrayObjectsGallery,RenderGallery  };
 
 /**
  * -- 3ro
