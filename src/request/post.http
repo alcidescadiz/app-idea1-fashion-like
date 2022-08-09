@@ -13,9 +13,8 @@ x-access-token : {{token}}
 content-type: application/json
 
 {
-    "post": "post6",
-    "img":"./imagenes/post6.jpg",
-    "voto":"like"
+    "post": "",
+    "img":""
 }
 
 ### eliminar un post

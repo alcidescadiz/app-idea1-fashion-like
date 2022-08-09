@@ -1,30 +1,26 @@
-export let UsersEntity = {
-    name: {
-        type:'string',
-        requiered: true,
-        min: 6
-    },
-    lastname:{
-        type:'string',
-        requiered: true,
-        min: 6
-    },
-    email:{
-        type:'email',
-        requiered: true,
-        min: 6
-    },
-    password:{
-        type:'password',
-        requiered: true,
-        min: 6
-    },
-    like:{
-        type: 'array'
-    },
-    dislike:{
-        type: 'array'
-    }
-
-
-}
+export function UserEsquema(  
+  name, lastname, email, password) {
+    return [
+      {
+        name: {
+          value: name.trim().toUpperCase(),
+          type: "string",
+          empty: false
+        },
+        lastname: {
+            value: name.trim().toUpperCase(),
+            type: "string",
+            empty: false
+          },
+        email: {
+          value: email.trim().toLowerCase(),
+          type: "email",
+          empty: false,
+        },
+        password: {
+          value: password.trim(),
+          type: "password"
+        }
+      }
+    ];
+  }

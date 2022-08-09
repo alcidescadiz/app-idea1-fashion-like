@@ -5,7 +5,7 @@ export let useGenerateTableCRUD = function () {
   //---- gestionar array de post----//
   /**@type {array} */
   let save = [];
-  let inicialArrayObjects = (array)=>  save = array.map((e) => ({id: e.id, post:e.post,img:e.img, date:e.date}))||[];
+  let inicialArrayObjects = (array)=>  save = array.map((e) => ({id: e.id, post:e.post,img:e.img,description:e.description, date:e.date}))||[];
   let getArrayObjects = () => save.sort((e, p) => e.id - p.id);
   let setObjectInArray = ({ value, mode, id }) => {
     try {
@@ -172,7 +172,7 @@ export let useGenerateTableCRUD = function () {
       div.appendChild(divTopTen);
       let message = document.createElement("div");
       message.id = "form-message";
-      message.classList.add("cotainer");
+      message.classList.add("container");
       div.appendChild(message);
       let tabla = document.createElement("div");
       tabla.id = "tabla";
@@ -233,8 +233,29 @@ export let useGenerateTableCRUD = function () {
   function messageForm(params, type = 'alert-success') { 
     //@ts-ignore: Object is possibly 'null'.
     document.getElementById('form-message').innerHTML=`
-    <div class="alert ${type} alert-dismissible fade show fixed-top" role="alert">
+    <div class="alert ${type} alert-dismissible fade show fixed-top m-2" role="alert">
       <strong>${params}</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    `
+    setTimeout(()=>{
+      //@ts-ignore: Object is possibly 'null'.
+      document.getElementById('form-message').innerHTML=``
+    },5000)
+  }
+  function messageFormErrors(errorsArray = [], type = 'alert-success') { 
+    let errorsTemplate = ``
+    errorsArray.map(e => {
+      errorsTemplate +=`
+      <ul>
+        <li><p><strong>${e}</strong></p></li>
+      </ul>
+      `
+    }) 
+    //@ts-ignore: Object is possibly 'null'.
+    document.getElementById('form-message').innerHTML=`
+    <div class="alert ${type} alert-dismissible fade show fixed-top m-2" role="alert">
+      ${errorsTemplate}
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     `
@@ -323,6 +344,8 @@ export let useGenerateTableCRUD = function () {
         }
       })
     })
+    if (topTenArray.like.length === 0) templateTopLike =`<h5 class="text-center"> No hay datos disponibles</h5>`
+    if (topTenArray.dislike.length === 0) templateTopDisLike =`<h5 class="text-center "> No hay datos disponibles</h5>`
     let templateTop =`
     <div class="container m-1">
         <div class="text-center bg-light">
@@ -349,6 +372,7 @@ export let useGenerateTableCRUD = function () {
     getData,
     eventFormEdit,
     getIdDataEdit,
-    TopTenTemplate
+    TopTenTemplate,
+    messageFormErrors
   };
 };

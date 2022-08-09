@@ -25,7 +25,7 @@ export async function removePost(idPost, database) {
 
 }
 
-export async function updatingPost({idpost, post, img}, database) {
+export async function updatingPost({idpost, post, img, description}, database) {
     try {
         const searchPost = getConnection().data[database].filter(e => e.id === idpost)
         if(searchPost.length < 1) return false
@@ -34,6 +34,7 @@ export async function updatingPost({idpost, post, img}, database) {
                e.id = idpost
                e.post = post
                e.img = img
+               e.description= description
                e.date = new Date().toString().split(' ').splice(0,4).join(" ")
                return e
             }

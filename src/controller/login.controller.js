@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 dotenv.config();
+import bcrypt from 'bcrypt'
 
 /**@type {any|string} */
 const KEY = process.env.KEY;
@@ -12,7 +13,9 @@ export async function Login(req, res) {
   try {
     const { email, password } = req.body;
     const user = await getOneDb(email, database);
-    if (user.email === email && user.password === password) {
+    const passwordCompare = await bcrypt.compare(password, user.password)
+    if (!passwordCompare) throw "Clave no valida"
+    if (user.email === email) {
       const token = jwt.sign(user, KEY, { expiresIn: "48h" });
       res
         .cookie("app-fashion-token", token, {

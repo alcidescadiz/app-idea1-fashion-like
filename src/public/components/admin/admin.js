@@ -14,7 +14,8 @@ let {
   getData,
   eventFormEdit,
   getIdDataEdit,
-  TopTenTemplate
+  TopTenTemplate,
+  messageFormErrors
 } = useGenerateTableCRUD();
 
 //-- 1ro exportar componente
@@ -29,6 +30,7 @@ getModal("formulario", "Form Modal", {
   id: "text",
   post: "text",
   img: "text",
+  description: "text",
   date: "text",
 });
 /**
@@ -78,14 +80,17 @@ document.addEventListener("submit", (e) => {
           headers: {
             "Content-Type": "application/json",
           },
-        }).then((res) => {
-          if (res.statusText === "OK") {
-            //@ts-ignore: Object is possibly 'null'.
-            document.getElementById("submitRegister")?.onreset();
-            setObjectInArray({ value: getData(), mode: "add", id: null });
-            RenderTable();
-          }
-        });
+        }).then((res) => res.json())
+          .then(json => {
+            if (json.msg) {
+              //@ts-ignore: Object is possibly 'null'.
+              document.getElementById("submitRegister")?.onreset();
+              setObjectInArray({ value: getData(), mode: "add", id: null });
+              RenderTable();
+            }else if (json.error){
+              messageFormErrors(json.error, 'alert-danger')
+            }
+          });
       }
     }
     //--- editar - edit---
@@ -103,19 +108,22 @@ document.addEventListener("submit", (e) => {
           headers: {
             "Content-Type": "application/json",
           },
-        }).then((res) => {
-          if (res.statusText === "OK") {
-            //@ts-ignore: Object is possibly 'null'.
-            document.getElementById("submitRegister")?.onreset();
-            setObjectInArray({
-              value: getIdDataEdit().data,
-              mode: "update",
-              id: getIdDataEdit().id,
-            });
-            inicialArrayObjectsGallery(getArrayObjects())
-            RenderTable();
-          }
-        });
+        }).then((res) => res.json())
+          .then(json => {
+              if (json.msg) {
+              //@ts-ignore: Object is possibly 'null'.
+              document.getElementById("submitRegister")?.onreset();
+              setObjectInArray({
+                value: getIdDataEdit().data,
+                mode: "update",
+                id: getIdDataEdit().id,
+              });
+              inicialArrayObjectsGallery(getArrayObjects())
+              RenderTable();
+            }else if (json.error){
+              messageFormErrors(json.error, 'alert-danger')
+            }
+          })
         e.stopImmediatePropagation()
       }
     }
@@ -138,7 +146,6 @@ document.addEventListener("click", (e) => {
           "Content-Type": "application/json",
         },
       }).then((res) => {
-        console.log(res)
         if (res.statusText === "OK") {
           //@ts-ignore: Object is possibly 'null'.
           setObjectInArray({ value: null, mode: "delete", id });

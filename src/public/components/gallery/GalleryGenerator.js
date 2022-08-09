@@ -84,7 +84,7 @@ export let useGenerateGalleryCard = function () {
                   ${dislike.includes(e.id)? templateDislike: ''}
                 </div>
               <h5 class="card-title">${e.post}</h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <p class="card-text">${e.description}</p>
               </div>
               <br>
               <br>
