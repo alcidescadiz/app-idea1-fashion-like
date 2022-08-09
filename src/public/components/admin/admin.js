@@ -14,6 +14,7 @@ let {
   getData,
   eventFormEdit,
   getIdDataEdit,
+  TopTenTemplate
 } = useGenerateTableCRUD();
 
 //-- 1ro exportar componente
@@ -46,6 +47,7 @@ window.addEventListener("hashchange", (e) => {
       .then((res) => res.json())
       .then((json) => {
         inicialArrayObjects(json.posts);
+        TopTenTemplate(json.topTenPost)
       });
   }
 });

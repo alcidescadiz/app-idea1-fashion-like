@@ -2,7 +2,7 @@
 // @ts-check
 
 export let useGenerateTableCRUD = function () {
-  //---- gestionar array de objetos----//
+  //---- gestionar array de post----//
   /**@type {array} */
   let save = [];
   let inicialArrayObjects = (array)=>  save = array.map((e) => ({id: e.id, post:e.post,img:e.img, date:e.date}))||[];
@@ -102,12 +102,13 @@ export let useGenerateTableCRUD = function () {
   let setTempleteArray = (array, tableClass = "container align-middle table pb-5 ") => {
     try {
       let div = document.createElement("div");
-
+      //@ts-ignore: Object is possibly 'null'.
       div.classList ='table-responsive pb-2'
       let table = document.createElement("table");
       let createTable =
         '<button type="button" class="d-flex btn btn-outline-primary btn-lg m-1" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Create</button>';
       div.innerHTML += createTable;
+      //@ts-ignore: Object is possibly 'null'.
       table.classList = tableClass;
       if (array.length < 1) {
         div.innerHTML += modal;
@@ -150,6 +151,7 @@ export let useGenerateTableCRUD = function () {
     try {
       setTimeout(() => {
         setTempleteArray(getArrayObjects())
+        //@ts-ignore: Object is possibly 'null'.
         document.getElementById("tabla").replaceChildren(getTable());
       }, 10);
     } catch (error) {
@@ -165,10 +167,12 @@ export let useGenerateTableCRUD = function () {
       if(fn().email !== 'admin@mail.com') return div
       //@ts-ignore: Object is possibly 'null'.
       div.classList = "container pb-5";
+      let divTopTen = document.createElement("div");
+      divTopTen.id= "div-top-ten"
+      div.appendChild(divTopTen);
       let message = document.createElement("div");
       message.id = "form-message";
-      //@ts-ignore: Object is possibly 'null'.
-      message.classList = "container";
+      message.classList.add("cotainer");
       div.appendChild(message);
       let tabla = document.createElement("div");
       tabla.id = "tabla";
@@ -187,19 +191,28 @@ export let useGenerateTableCRUD = function () {
           if (e.target.innerHTML === "Create") {
             CleanForm()
             RenderTable();
+            //@ts-ignore: Object is possibly 'null'.
             document.getElementById("action-form-edit").style.display = 'none';
+            //@ts-ignore: Object is possibly 'null'.
             document.getElementById("action-form-add").style.display = "block";
           }
+          //@ts-ignore: Object is possibly 'null'.
           if (e.target.innerHTML === "Close") {
             CleanForm()
+            //@ts-ignore: Object is possibly 'null'.
             document.getElementById("action-form-add").style.display = "none";
+            //@ts-ignore: Object is possibly 'null'.
             document.getElementById("action-form-edit").style.display = 'none';
           }
+          //@ts-ignore: Object is possibly 'null'.
           if (e.target.innerHTML === "View") {
             CleanForm()
             RenderTable();
+            //@ts-ignore: Object is possibly 'null'.
             document.getElementById("action-form-edit").style.display = 'block';
+            //@ts-ignore: Object is possibly 'null'.
             document.getElementById("action-form-add").style.display = "none";
+            //@ts-ignore: Object is possibly 'null'.
             let id = e.target.parentNode.parentNode.childNodes[0].innerHTML
             let data = save.filter((e) => e.id === id);
             Object.entries(data[0]).map((e) => {
@@ -218,6 +231,7 @@ export let useGenerateTableCRUD = function () {
     return dataEdit;
   }
   function messageForm(params, type = 'alert-success') { 
+    //@ts-ignore: Object is possibly 'null'.
     document.getElementById('form-message').innerHTML=`
     <div class="alert ${type} alert-dismissible fade show fixed-top" role="alert">
       <strong>${params}</strong>
@@ -225,21 +239,25 @@ export let useGenerateTableCRUD = function () {
     </div>
     `
     setTimeout(()=>{
+      //@ts-ignore: Object is possibly 'null'.
       document.getElementById('form-message').innerHTML=``
     },5000)
   }
   let eventForm = function (msg) { 
+    //@ts-ignore: Object is possibly 'null'.
     let formData = document.getElementById(idForm).elements;
     for (let index = 0; index < formData.length; index++) {
       if (formData[index].name) {
         data[formData[index].name] = formData[index].value;
       }
     }
+    //@ts-ignore: Object is possibly 'null'.
     document.getElementById(idForm).reset();
     messageForm( msg || 'Elemento añadido satisfactoriamente')
   };
   let eventFormEdit = function (msg) {
     try {
+      //@ts-ignore: Object is possibly 'null'.
       let formData = document.getElementById(idForm).elements;
       for (let index = 0; index < formData.length - 2; index++) {
         if (formData[index]?.name === "id") {
@@ -260,6 +278,66 @@ export let useGenerateTableCRUD = function () {
     } catch (error) {
     }
   };
+  let TopTenTemplate = (topTenArray)=>{
+    let templateTopLike = ``
+    let templateTopDisLike = ``
+    save.map((e,i)=> {
+      topTenArray.like.map(p=>{
+        if (p[0] === e.id){
+          templateTopLike+= `          
+          <div class="overflow-hidden text-center m-1 border">
+            <div class="row gx-5">
+              <div class="col" >
+                <div class="border bg-light" >
+                  <img src="${e.img}" width="50px">
+                </div>
+              </div>
+              <div class="col position-relative bg-light">
+                <div class="position-absolute top-50 start-50 translate-middle">
+                  <p>${p[1]}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          `
+        }
+      })
+      topTenArray.dislike.map(p=>{
+        if (p[0] === e.id){
+          templateTopDisLike+= `          
+          <div class="overflow-hidden text-center m-1 border">
+            <div class="row gx-5">
+              <div class="col" >
+                <div class=" border bg-light" >
+                  <img src="${e.img}" width="50px">
+                </div>
+              </div>
+              <div class="col position-relative bg-light">
+                <div class="position-absolute top-50 start-50 translate-middle">
+                  <p>${p[1]}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          `
+        }
+      })
+    })
+    let templateTop =`
+    <div class="container m-1">
+        <div class="text-center bg-light">
+          <h3> Top Fashion Like</h3>
+        </div>
+          ${templateTopLike}
+        <div class="text-center bg-light">
+          <h3> Top Fashion disLike</h3>
+        </div>    
+          ${templateTopDisLike}
+    </div>
+    `
+    //@ts-ignore: Object is possibly 'null'.
+    document.getElementById("div-top-ten").innerHTML = templateTop
+  }
   return {
     inicialArrayObjects,
     getArrayObjects,
@@ -270,6 +348,7 @@ export let useGenerateTableCRUD = function () {
     eventForm,
     getData,
     eventFormEdit,
-    getIdDataEdit
+    getIdDataEdit,
+    TopTenTemplate
   };
 };

@@ -1,11 +1,14 @@
 import { v4 } from "uuid";
 import { addDB, getAllDb, removePost, updatingPost } from "../services/lowdb.repository.js";
+import { postStadistic } from "../utils/postStadist.js";
 const database = "post"
 
 export async function allPost(req, res){
     try {
         const posts = await getAllDb(database)
-        res.status(200).json({posts});
+        const users = await getAllDb("users")
+        let topTenPost = postStadistic(users)
+        res.status(200).json({posts, topTenPost});
       } catch (error) {
         res.status(400).send({
           error: error,
