@@ -2,6 +2,7 @@ import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 dotenv.config();
 
+/**@type {any|string} */
 const KEY = process.env.KEY;
 import { getOneDb } from "../services/lowdb.repository.js";
 
@@ -15,7 +16,7 @@ export async function Login(req, res) {
       const token = jwt.sign(user, KEY, { expiresIn: "48h" });
       res
         .cookie("app-fashion-token", token, {
-          expires: new Date(Date.now() + 60 * 60 * 60 * 24 * 2)
+          expires: new Date(Date.now() + 60 * 60 * 60 * 24 * 2) 
         })
         .status(200)
         .json({ email: user.email, like: user.like, dislike: user.dislike });

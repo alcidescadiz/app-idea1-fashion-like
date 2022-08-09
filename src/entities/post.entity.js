@@ -10,10 +10,6 @@ export let PostEntity = {
     img:{
         type:'text',
         requiered: true,
-    },
-    voto:{
-        type:'text',
-        requiered: true,
     }
 
 }

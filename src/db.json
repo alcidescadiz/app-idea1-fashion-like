@@ -56,16 +56,13 @@
       "dislike": []
     },
     {
-      "id": "210ab0f1-3726-4990-86b4-0153db03d21c",
+      "id": "4fa6c184-125e-4600-8359-3324fc2bebea",
       "name": "alcides",
       "lastname": "cadiz",
       "email": "alcides@mail.com",
       "password": "123456",
       "like": [],
-      "dislike": [
-        "8af2d9d2-a2b5-47af-97df-6623a057d9e3",
-        "bb7d8591-87ed-4a3a-a8d8-5400603e02c5"
-      ]
+      "dislike": []
     }
   ]
 }

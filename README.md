@@ -2,6 +2,8 @@
 
 ### Tecnologias usadas:
 
+Backend:
+
 * Express
 * Dotenv
 * Cors
@@ -11,4 +13,14 @@
 * LowDb
 * Heroku
 
-### Disponible en : https://app-fashion-like.herokuapp.com/
+Frontend:
+
+* Cookies
+* SessionStorage
+
+* Html
+* Js
+
+* Css
+
+#### Disponible en : https://app-fashion-like.herokuapp.com/

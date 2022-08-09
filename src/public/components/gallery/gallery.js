@@ -9,7 +9,7 @@ let { componentGallery, inicialArrayObjects, RenderGallery,setObjectInArray } =
 export { componentGallery as Gallery, inicialArrayObjects as inicialArrayObjectsGallery,RenderGallery  };
 
 /**
- * -- 3ro
+ * -- 2do
  * Estado inicial dela base de datos-- USAR ESTA PARA EL FECTH
  */
 

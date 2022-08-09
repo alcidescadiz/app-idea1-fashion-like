@@ -74,7 +74,6 @@ export function Register() {
                             alert('Ya puede iniciar sesión!!')
                         }else{
                             //TODO: MENSAJE DE QUE NO SE PUDO REGISTRAR 
-                            console.log(res)
                             console.log('no hay respuesta espere')
                             window.location.hash= '#register'
                         }

@@ -19,7 +19,10 @@ export let UsersEntity = {
         requiered: true,
         min: 6
     },
-    favorities:{
+    like:{
+        type: 'array'
+    },
+    dislike:{
         type: 'array'
     }
 

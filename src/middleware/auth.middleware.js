@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import { getOneDb } from "../services/lowdb.repository.js";
 dotenv.config();
 
+/**@type {string|any} */
 const KEY = process.env.KEY
 
 export async function Auth(req, res, next){
@@ -12,6 +13,7 @@ export async function Auth(req, res, next){
             key : cookie.split('=')[0],
             token : cookie.split('=')[1]
         }
+        //@ts-ignore: Object is possibly 'null'.
         const {email, password} = jwt.verify(variable.token, KEY);
         const user = await getOneDb(email, 'users')
         req.idUser = user.id

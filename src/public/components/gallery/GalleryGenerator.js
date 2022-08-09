@@ -132,16 +132,14 @@ export let useGenerateGalleryCard = function () {
   function componentGallery([fn]) {
     const {like, dislike} = fn()
       let div = document.createElement("div");
-      //@ts-ignore: Object is possibly 'null'.
-      div.classList = "container";
+      div.classList.add("container") 
       let message = document.createElement("div");
       message.id = "form-message";
-      //@ts-ignore: Object is possibly 'null'.
-      message.classList = "container";
+      message.classList.add("container");
       div.appendChild(message);
-      let tabla = document.createElement("div");
-      tabla.id = "div-galeria";
-      div.appendChild(tabla);
+      let divGallery = document.createElement("div");
+      divGallery.id = "div-galeria";
+      div.appendChild(divGallery);
       RenderGallery(like, dislike);
       return div;
 
