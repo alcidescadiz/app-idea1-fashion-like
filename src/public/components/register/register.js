@@ -1,6 +1,6 @@
 "use strict"
 // @ts-check 
-
+import {messageFormErrors} from '../admin/admin.js'
 /**
  * @function
  * @name Register
@@ -8,6 +8,10 @@
  */
 export function Register() {
     let div = document.createElement('div')
+    let message = document.createElement("div");
+    message.id = "form-message";
+    message.classList.add("container");
+    div.appendChild(message);
     let templete= `
      <div class='container pb-5'>
         <div class="display-1 text-center"> Register</div>
@@ -34,8 +38,18 @@ export function Register() {
             <div class="mb-3 row">
                 <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
                 <div class="col-sm-10">
-                <input type="password" class="form-control" name="password" id="inputPassword">
+                    <input type="password" class="form-control" name="password" id="inputPassword">
                 </div>
+
+            </div>
+            <div class="mb-3 row">
+                <label for="inputPassword" class="col-sm-2 col-form-label"></label>
+                <label class="col-sm-10">
+                    <i>
+                     La contraseña debe ser entre 8-15 caracteres, poseer al menos una mayuscula, un número, un caracter especial de estos: $@$!%*?&
+                    </i>
+                </label>
+
             </div>
             <hr>
             <div class="d-grid gap-2 col-6 mx-auto">
@@ -56,7 +70,6 @@ export function Register() {
                     for (let index = 0; index < 4; index++) {
                         data[formData[index].name] = formData[index].value;
                     }
-                    // TODO: AÑADIR VALIDACIONES FRONT Y BACK
                     fetch(window.location.origin+'/v1-api-register',
                         {
                             body: JSON.stringify(data),
@@ -66,23 +79,25 @@ export function Register() {
                                 "x-access-token": "yfkuyfu"
                             }
                         }
-                    ).then(res => {
-                        if(res.statusText === 'OK'){
+                    ).then(res => res.json())
+                     .then(json =>{
+                        if(json.msg){
                             //@ts-ignore: Object is possibly 'null'.
                             submitRegister.reset()
-                            window.location.hash= '#login'
+                            messageFormErrors([json.msg])
                             alert('Ya puede iniciar sesión!!')
-                        }else{
-                            //TODO: MENSAJE DE QUE NO SE PUDO REGISTRAR 
-                            console.log('no hay respuesta espere')
-                            window.location.hash= '#register'
+                            window.location.hash= '#login'
+                        }
+                        if(json.error){
+                            messageFormErrors(json.error, 'alert-danger')
                         }
                     })
-                },{once:true})
+                 e.stopImmediatePropagation()
+                })
             }
         },10)
     } catch (error) {
     }
-    div.innerHTML = templete
+    div.innerHTML += templete
     return div
 }

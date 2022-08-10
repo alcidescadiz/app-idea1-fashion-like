@@ -58,6 +58,48 @@
       "lastname": "admin",
       "email": "admin@mail.com",
       "password": "$2b$10$6verLeSajN0qpzHv..vAG.9PnfFLmg9qgNaZVyqCiV/usasq1H2tO",
+      "like": [
+        "52f53a31-effc-40aa-9006-4f1c679bf3f9",
+        "8a94a788-37af-4903-a10b-5d966123e6a9"
+      ],
+      "dislike": [
+        "8af2d9d2-a2b5-47af-97df-6623a057d9e3",
+        "d0b26549-6886-4980-b3d4-5a98128d21be"
+      ]
+    },
+    {
+      "id": "c77c186e-f008-4ddf-8ffd-eb87455ee899",
+      "name": "GUATAVO",
+      "lastname": "GUATAVO",
+      "email": "gustavo@mail.com",
+      "password": "$2b$10$lBsGVxmpx8Y7HFhaUHT6CefUlPz1fXGB54lSRdjv/hXruFrkuR80m",
+      "like": [],
+      "dislike": []
+    },
+    {
+      "id": "926207ac-2b2b-446b-ac35-809cd18b567d",
+      "name": "MARIA",
+      "lastname": "MARIA",
+      "email": "maria@mail.com",
+      "password": "$2b$10$NyUKp0SDU.znL7sX.3DdOeVj6BJkev0slet.WjK.N7a5pmll9AHem",
+      "like": [],
+      "dislike": []
+    },
+    {
+      "id": "0e978c6b-8139-4511-b88b-15d79d1fa208",
+      "name": "OTAVIO",
+      "lastname": "OTAVIO",
+      "email": "otavio@mail.com",
+      "password": "$2b$10$PuQJlNIKzfONXf0LPvBVW.CfAbVZMfMwK7QTIQIEByUjI0iAaFmsi",
+      "like": [],
+      "dislike": []
+    },
+    {
+      "id": "30dabce5-66a5-4913-bfb7-5fb295c30470",
+      "name": "ALCIDES",
+      "lastname": "ALCIDES",
+      "email": "alcides@mail.com",
+      "password": "$2b$10$TtXS2ToxErZGdGiAJdOCjuSkJoxTYavjb.IpZiH/D6YyJu91vUYGa",
       "like": [],
       "dislike": []
     }

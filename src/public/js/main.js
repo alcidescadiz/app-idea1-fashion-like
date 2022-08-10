@@ -1,6 +1,6 @@
 "use strict"
 // @ts-check
-
+import {messageFormErrors} from '../components/admin/admin.js'
 import Router from "../modules/Router.clouser.js";
 import {Menu, LoginHTML,Admin ,Gallery,RenderGallery, Foot,Register} from '../components/index.js'
 let [Loading, Route, Render, RenderEvent, PageNotFound, Login] = Router();
@@ -67,12 +67,10 @@ document.addEventListener("click", (e) => {
                 }
             ).then(res => res.json())
               .then(json => {
-                if(json.user.error){
-                    alert(json.user.error)
-                    //@ts-ignore: Object is possibly 'null'.
-                    Login({ status:true, email: json.user.email, like:json.user.like,  dislike:json.user.dislike })
+                if(json.error){
+                    messageFormErrors([json.error.error], 'alert-danger')
                 }
-                if(json.user.email){
+                if(json.user?.email){
                     //@ts-ignore: Object is possibly 'null'.
                   Login({ status:true, email: json.user.email, like:json.user.like,  dislike:json.user.dislike })
                   upateSesionStorage(json.user.like, json.user.dislike )
@@ -80,8 +78,10 @@ document.addEventListener("click", (e) => {
                 }
             })
         }else{
-            alert('registrese x favor')
-            window.location.hash= '#login' 
+            window.location.hash= '#register' 
+            setTimeout(()=>{
+                messageFormErrors(['Debe ser usuario registrado para votar'], 'alert-danger')
+            },100)
         }
     }
   });

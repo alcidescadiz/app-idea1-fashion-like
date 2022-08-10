@@ -19,7 +19,7 @@ let {
 } = useGenerateTableCRUD();
 
 //-- 1ro exportar componente
-export { componentTable as Admin };
+export { componentTable as Admin, messageFormErrors };
 
 //-- 2do
 //  --> id del formulario 'string',

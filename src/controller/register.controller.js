@@ -30,11 +30,10 @@ export async function Register(req, res) {
 
       res
         .status(200)
-        .send({msg: "Usuario agregado con éxito"});
+        .json({msg: "Usuario agregado con éxito"});
     } catch (error) {
       res.status(400).json({
-        error: error,
-        msg: "Algo mal ha pasado revise los datos enviados",
+        error: error
       });
     }
   }

@@ -1,5 +1,6 @@
 "use strict"
 // @ts-check
+import {messageFormErrors} from '../admin/admin.js'
 
 /**
  * @function
@@ -9,6 +10,10 @@
  */
 export function LoginHTML([fn]) {
     let div = document.createElement('div')
+    let message = document.createElement("div");
+    message.id = "form-message";
+    message.classList.add("container");
+    div.appendChild(message);
     let templete= `
      <div class='container pb-5'>
         <div class="display-1 text-center"> Login</div>
@@ -62,13 +67,15 @@ export function LoginHTML([fn]) {
                         submitLogin.reset()
                         window.location.hash= '#'               
                     }else{
-                        window.location.hash= '#register' 
+                        messageFormErrors(['Datos invalidos'], 'alert-danger')
+                        //window.location.hash= '#register' 
                     }
                 })
-            },{once:true})
+                e.stopImmediatePropagation()
+            })
         },10)
     } catch (error) {
     }
-    div.innerHTML = templete
+    div.innerHTML += templete
     return div
 }
