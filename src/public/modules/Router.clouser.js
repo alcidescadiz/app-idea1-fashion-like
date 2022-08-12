@@ -46,6 +46,7 @@ let Router = () => {
           divRoot.innerHTML = ''
           let pathname = window.location.hash;
           if (!Routes.map((e) => e.path).includes(pathname)) {
+            divRoot?.appendChild(Routes[0].template(Routes[0].props))
             divRoot.appendChild(NotFount);
             return;
           } else {

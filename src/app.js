@@ -29,4 +29,9 @@ app.get('/', (req, res)=>{
     res.render('index', {title: 'Home page'})
 })
 
+// redirecct to index
+app.use((req, res) => {
+    res.redirect("/");
+});
+
 export default app
